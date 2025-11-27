@@ -2,42 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LightsCameraAction (LCA) – AI-Powered Filmmaking Network</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LightsCameraAction (LCA) – Prototype App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background: #050510;
       color: #f5f5f5;
       line-height: 1.6;
     }
+
+    a {
+      color: inherit;
+    }
+
     header {
       padding: 20px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
       backdrop-filter: blur(12px);
-      background: rgba(5,5,16,0.9);
+      background: rgba(5, 5, 16, 0.9);
       z-index: 10;
     }
+
     .logo {
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-size: 0.9rem;
     }
+
     .logo span {
       display: inline-block;
       padding: 4px 8px;
-      border: 1px solid rgba(255,255,255,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 999px;
       margin-right: 8px;
       font-size: 0.75rem;
     }
+
     nav a {
       margin-left: 20px;
       text-decoration: none;
@@ -45,7 +60,10 @@
       font-size: 0.9rem;
       opacity: 0.85;
     }
-    nav a:hover { opacity: 1; }
+
+    nav a:hover {
+      opacity: 1;
+    }
 
     .btn {
       display: inline-block;
@@ -60,10 +78,15 @@
       cursor: pointer;
       margin-left: 12px;
     }
+
     .btn-outline {
       background: transparent;
       color: #f5f5f5;
-      border-color: rgba(245,194,73,0.6);
+      border-color: rgba(245, 194, 73, 0.6);
+    }
+
+    main {
+      padding-bottom: 40px;
     }
 
     .hero {
@@ -75,50 +98,64 @@
       gap: 32px;
       align-items: center;
     }
+
     .hero h1 {
       font-size: clamp(2.4rem, 4vw, 3.4rem);
       margin-bottom: 16px;
     }
+
     .hero h1 span {
       display: block;
       font-weight: 400;
       font-size: 0.8em;
       opacity: 0.85;
     }
+
     .hero p {
       font-size: 1rem;
       opacity: 0.9;
       margin-bottom: 20px;
     }
-    .hero-cta { margin-top: 12px; }
+
+    .hero-cta {
+      margin-top: 12px;
+    }
+
     .hero-tagline {
       font-size: 0.85rem;
       opacity: 0.75;
       margin-top: 10px;
     }
+
     .hero-card {
       border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background: radial-gradient(circle at top left, #2c2c52, #050510);
       padding: 20px 18px;
       font-size: 0.85rem;
     }
+
     .hero-card h2 {
       font-size: 1rem;
       margin-bottom: 10px;
     }
-    .hero-card ul { list-style: none; }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
     .hero-card li {
       margin-bottom: 8px;
       display: flex;
       align-items: flex-start;
     }
+
     .hero-card li span {
       display: inline-block;
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      border: 1px solid rgba(245,194,73,0.7);
+      border: 1px solid rgba(245, 194, 73, 0.7);
       font-size: 0.7rem;
       text-align: center;
       line-height: 16px;
@@ -130,177 +167,748 @@
       margin: 0 auto 60px;
       padding: 0 24px;
     }
+
     .section h2 {
       font-size: 1.6rem;
       margin-bottom: 16px;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
     }
+
     .card {
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 18px;
       font-size: 0.9rem;
-      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(255, 255, 255, 0)
+      );
     }
+
     .card h3 {
       font-size: 1rem;
       margin-bottom: 8px;
     }
+
     .pill {
       display: inline-block;
       font-size: 0.7rem;
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(245,194,73,0.6);
+      border: 1px solid rgba(245, 194, 73, 0.6);
       margin-bottom: 8px;
       opacity: 0.9;
     }
 
+    .beta-form {
+      margin-top: 10px;
+    }
+
+    .beta-form input[type="email"] {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #f5f5f5;
+      width: 260px;
+      max-width: 100%;
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+
+    .beta-form small {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
     footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding: 18px 24px 28px;
       font-size: 0.8rem;
       text-align: center;
       opacity: 0.7;
     }
 
+    /* Prototype app styles */
+
+    .app-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .app-card {
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 16px 20px;
+      background: rgba(10, 10, 25, 0.9);
+      font-size: 0.9rem;
+    }
+
+    .app-card h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .app-card p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
+
+    .field-group {
+      margin-bottom: 10px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      opacity: 0.85;
+    }
+
+    .field-group input,
+    .field-group textarea,
+    .field-group select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(8, 8, 20, 0.9);
+      color: #f5f5f5;
+      font-size: 0.85rem;
+    }
+
+    .field-group textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .small-text {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    .projects-empty {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    .project-item {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 12px 14px;
+      margin-bottom: 10px;
+      background: radial-gradient(circle at top left, #242446, #050510);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .status-pill {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 194, 73, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .status-draft {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .status-generated {
+      border-color: rgba(130, 255, 170, 0.9);
+      color: #9ef1b7;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .project-actions {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-small {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 194, 73, 0.6);
+      background: transparent;
+      color: #f5f5f5;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .btn-small.primary {
+      background: #f5c249;
+      color: #111;
+      border-color: #f5c249;
+      font-weight: 600;
+    }
+
+    .breakdown {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.8rem;
+    }
+
+    .breakdown h4 {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    .breakdown-section {
+      margin-bottom: 6px;
+    }
+
+    .roles-list {
+      margin-left: 14px;
+      list-style: disc;
+    }
+
+    .pill-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      margin-right: 4px;
+      margin-bottom: 3px;
+      opacity: 0.85;
+    }
+
+    .app-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+    }
+
+    .link-quiet {
+      font-size: 0.78rem;
+      opacity: 0.7;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
     @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; }
-      nav { margin-top: 8px; }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 8px;
+      }
+
       .hero {
         grid-template-columns: 1fr;
         margin-top: 24px;
       }
+
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">
-      <span>LCA</span> LightsCameraAction
-    </div>
-    <nav>
-      <a href="#how-it-works">How it works</a>
-      <a href="#ai-tools">AI tools</a>
-      <a href="#pricing">Pricing</a>
-      <a class="btn-outline" href="#join">Sign in</a>
-      <a class="btn" href="#join">Join beta</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">
+    <span>LCA</span> LightsCameraAction
+  </div>
+  <nav>
+    <a href="#how-it-works">How it works</a>
+    <a href="#prototype">App preview</a>
+    <a href="#ai-tools">AI tools</a>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero">
-      <div>
-        <h1>
-          AI crew. Real human actors.
-          <span>The filmmaking network where everything behind the camera is automated—so people can focus on performance.</span>
-        </h1>
-        <p>
-          LightsCameraAction (LCA) is an AI-powered production hub: generate projects, organize shoots, match cast and crew, and get paid—without replacing a single human actor.
-        </p>
-        <div class="hero-cta">
-          <a class="btn" href="#join">Get early access</a>
-          <a class="btn-outline" href="#how-it-works">View platform</a>
-        </div>
-        <div class="hero-tagline">
-          Built for actors, directors, and producers who want less chaos and more finished projects.
-        </div>
+<main>
+  <!-- HERO / LANDING -->
+  <section class="hero">
+    <div>
+      <h1>
+        AI crew. Real human actors.
+        <span>
+          The filmmaking network where everything behind the camera is
+          automated—so people can focus on performance.
+        </span>
+      </h1>
+      <p>
+        LightsCameraAction (LCA) is an AI-powered production hub: generate
+        projects, organize shoots, match cast and crew, and get paid—without
+        replacing a single human actor.
+      </p>
+      <div class="hero-cta">
+        <a class="btn" href="#prototype">Open app preview</a>
+        <a class="btn-outline" href="#how-it-works">How it works</a>
       </div>
-      <aside class="hero-card">
-        <h2>LCA does the paperwork. You do the art.</h2>
-        <ul>
-          <li><span>1</span>AI turns a one-line idea into a full project: logline, breakdown, schedule, and roles.</li>
-          <li><span>2</span>Producers use AI to handle call sheets, scheduling, and logistics—actors stay 100% human.</li>
-          <li><span>3</span>Creators monetize skills through coaching, services, and bookings on the LCA marketplace.</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section id="how-it-works" class="section">
-      <h2>How LightsCameraAction works</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="pill">Step 1 · Create</div>
-          <h3>Turn ideas into structured projects</h3>
-          <p>Type your concept and let LCA generate loglines, breakdowns, characters, and a production-ready plan in minutes.</p>
-        </div>
-        <div class="card">
-          <div class="pill">Step 2 · Cast & crew</div>
-          <h3>Match humans to roles and jobs</h3>
-          <p>AI suggests actors and crew based on look, skills, and style—but humans always make the final casting decisions.</p>
-        </div>
-        <div class="card">
-          <div class="pill">Step 3 · Shoot & deliver</div>
-          <h3>AI production office in your browser</h3>
-          <p>Auto-built schedules, call sheets, and continuity notes keep sets calm, respectful, and on time.</p>
-        </div>
+      <div class="hero-tagline">
+        Built for actors, directors, and producers who want less chaos and
+        more finished projects.
       </div>
-    </section>
-
-    <section id="ai-tools" class="section">
-      <h2>AI tools that stay behind the camera</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Project Engine</h3>
-          <p>Generate production-ready outlines, breakdowns, and budgets from a simple description.</p>
-        </div>
-        <div class="card">
-          <h3>Casting Assistant</h3>
-          <p>Sort and suggest talent based on match score; directors and producers always pick the cast.</p>
-        </div>
-        <div class="card">
-          <h3>Production Office</h3>
-          <p>AI drafts schedules, call sheets, and logistics so your team can focus on storytelling.</p>
-        </div>
-        <div class="card">
-          <h3>Editing Assistant</h3>
-          <p>Get structure and pacing notes on rough cuts without losing your editor’s creative control.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="section">
-      <h2>Pricing for working creatives</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="pill">Free</div>
-          <h3>Starter Account</h3>
-          <p>Create a profile, browse projects, and join the LCA community.</p>
-        </div>
-        <div class="card">
-          <div class="pill">Pro</div>
-          <h3>Actor & Creator</h3>
-          <p>Unlock AI tools, priority casting, and marketplace earnings (monthly subscription).</p>
-        </div>
-        <div class="card">
-          <div class="pill">Studio</div>
-          <h3>Producer & Teams</h3>
-          <p>Run multiple projects, manage teams, and automate your entire production office.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="join" class="section">
-      <h2>Join the LightsCameraAction beta</h2>
-      <p>Drop your email below to be first in line for the private beta of LCA.</p>
-      <form>
-        <input type="email" placeholder="you@example.com" required
-               style="padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:#f5f5f5; width:260px; max-width:100%; margin-right:8px; font-size:0.9rem;" />
-        <button class="btn" type="submit">Request invite</button>
+      <form class="beta-form" onsubmit="event.preventDefault(); alert('In a real app, this would send your email to the waitlist. For now, this is a prototype.');">
+        <input type="email" placeholder="you@example.com" required />
+        <button class="btn" type="submit">Join beta waitlist</button>
+        <small>This is a front-end prototype only. No real emails are sent yet.</small>
       </form>
-    </section>
-  </main>
+    </div>
+    <aside class="hero-card">
+      <h2>LCA does the paperwork. You do the art.</h2>
+      <ul>
+        <li>
+          <span>1</span>AI turns a one-line idea into a project: logline,
+          breakdown, schedule, and roles.
+        </li>
+        <li>
+          <span>2</span>Producers use AI to handle call sheets and logistics—actors stay 100% human.
+        </li>
+        <li>
+          <span>3</span>Creators monetize skills through coaching, services, and bookings.
+        </li>
+      </ul>
+    </aside>
+  </section>
 
-  <footer>
-    © <span id="year"></span> LightsCameraAction · Built for real actors and real stories.
-  </footer>
+  <!-- HOW IT WORKS SECTION -->
+  <section id="how-it-works" class="section">
+    <h2>How LightsCameraAction works</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="pill">Step 1 · Create</div>
+        <h3>Turn ideas into structured projects</h3>
+        <p>
+          Type your concept and let LCA (in the real product) generate
+          loglines, breakdowns, characters, and a production-ready plan.
+        </p>
+      </div>
+      <div class="card">
+        <div class="pill">Step 2 · Cast &amp; crew</div>
+        <h3>Match humans to roles and jobs</h3>
+        <p>
+          AI suggests actors and crew based on look, skills, and style—humans always make the final casting call.
+        </p>
+      </div>
+      <div class="card">
+        <div class="pill">Step 3 · Shoot &amp; deliver</div>
+        <h3>AI production office in your browser</h3>
+        <p>
+          Auto-built schedules, call sheets, and continuity notes keep sets calm, respectful, and on time.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- PROTOTYPE APP -->
+  <section id="prototype" class="section">
+    <h2>LCA App Preview (Prototype)</h2>
+    <p style="font-size:0.9rem; opacity:0.85; margin-bottom:10px;">
+      This is a working front-end prototype. You can create projects and
+      generate <strong>mock AI breakdowns</strong>. Data is saved in your browser only
+      (localStorage) so you can click around and feel how LCA would work.
+    </p>
+
+    <div class="app-layout">
+      <!-- LEFT: PROJECT CREATION -->
+      <div class="app-card">
+        <h3>Create a new project</h3>
+        <p>Start with your concept. In the real app, AI would build out a full package.</p>
+
+        <form id="project-form">
+          <div class="field-group">
+            <label for="title">Project title</label>
+            <input id="title" name="title" type="text" placeholder="The Technician" required />
+          </div>
+
+          <div class="field-group">
+            <label for="description">Concept / description</label>
+            <textarea id="description" name="description" placeholder="An action thriller about a Filipino-American ex-military tech who becomes a fixer in LA." required></textarea>
+          </div>
+
+          <div class="field-group">
+            <label for="genre">Genre</label>
+            <input id="genre" name="genre" type="text" placeholder="Action Thriller" />
+          </div>
+
+          <div class="field-group">
+            <label for="format">Format</label>
+            <select id="format" name="format">
+              <option value="feature">Feature</option>
+              <option value="short">Short film</option>
+              <option value="series_pilot">Series pilot</option>
+            </select>
+            <div class="small-text">
+              These labels are just for your own organization in the prototype.
+            </div>
+          </div>
+
+          <button type="submit" class="btn" style="margin-top:6px;">Add project</button>
+        </form>
+
+        <p class="small-text" style="margin-top:10px;">
+          In a real build, this form would save to a database tied to your account;
+          here it saves inside your browser so you can feel the flow.
+        </p>
+      </div>
+
+      <!-- RIGHT: PROJECT LIST / BREAKDOWNS -->
+      <div class="app-card">
+        <div class="app-toolbar">
+          <div>
+            <strong>Your projects</strong>
+          </div>
+          <div>
+            <span class="link-quiet" onclick="resetProjects()">Reset demo data</span>
+          </div>
+        </div>
+
+        <div id="projects-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI TOOLS SECTION -->
+  <section id="ai-tools" class="section">
+    <h2>AI tools that stay behind the camera</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Project Engine</h3>
+        <p>
+          Generate production-ready outlines, breakdowns, and budgets from
+          a simple description. In this prototype, you see a light version
+          of how that would feel.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Casting Assistant</h3>
+        <p>
+          Sort and suggest talent based on match score; directors and
+          producers always pick the cast.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Production Office</h3>
+        <p>
+          AI drafts schedules, call sheets, and logistics so your team can
+          focus on storytelling.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Editing Assistant</h3>
+        <p>
+          Get structure and pacing notes on rough cuts without losing your
+          editor’s creative control.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> LightsCameraAction · Prototype built with AI.
+</footer>
+
+<script>
+  // --- Basic prototype state management using localStorage ---
+
+  const STORAGE_KEY = "lca_prototype_projects";
+
+  function loadProjects() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      return JSON.parse(raw);
+    } catch (e) {
+      console.error("Error loading projects", e);
+      return [];
+    }
+  }
+
+  function saveProjects(projects) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+  }
+
+  function resetProjects() {
+    if (!confirm("Reset demo data? This will clear all projects from your browser.")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    renderProjects();
+  }
+
+  function createProject(data) {
+    const projects = loadProjects();
+    const now = new Date().toISOString();
+    const newProject = {
+      id: "proj_" + Date.now(),
+      title: data.title.trim(),
+      description: data.description.trim(),
+      genre: data.genre.trim() || "Unspecified",
+      format: data.format || "feature",
+      status: "draft",
+      createdAt: now,
+      updatedAt: now,
+      breakdown: null // filled after "Generate Breakdown"
+    };
+    projects.unshift(newProject);
+    saveProjects(projects);
+    return newProject;
+  }
+
+  function updateProject(id, updates) {
+    const projects = loadProjects();
+    const idx = projects.findIndex(p => p.id === id);
+    if (idx === -1) return;
+    projects[idx] = {
+      ...projects[idx],
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+    saveProjects(projects);
+    return projects[idx];
+  }
+
+  function formatDate(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleString();
+    } catch {
+      return iso;
+    }
+  }
+
+  // --- Mock "AI" breakdown generator for demo ---
+
+  function generateMockBreakdown(project) {
+    const baseDesc = project.description || "";
+    const shortDesc = baseDesc.length > 140 ? baseDesc.slice(0, 140) + "..." : baseDesc;
+
+    const summary =
+      baseDesc.length > 20
+        ? baseDesc
+        : `A ${project.genre.toLowerCase()} about a driven protagonist whose world collides with danger and opportunity.`;
+
+    const roles = [
+      {
+        name: "Protagonist",
+        type: "lead",
+        description:
+          "Central character navigating high stakes and conflicting loyalties.",
+        ageRange: "25–45",
+        tag: "Lead"
+      },
+      {
+        name: "Antagonist",
+        type: "supporting",
+        description:
+          "Powerful force standing in the way of the protagonist's goal.",
+        ageRange: "30–60",
+        tag: "Villain / Opponent"
+      },
+      {
+        name: "Ally",
+        type: "supporting",
+        description:
+          "Supportive friend or partner who raises the emotional stakes.",
+        ageRange: "Any",
+        tag: "Support / Heart"
+      }
+    ];
+
+    const scheduleOutline = [
+      {
+        day: 1,
+        focus: "Intro + world-building",
+        notes: "Dialogue-heavy; minimal stunts."
+      },
+      {
+        day: 2,
+        focus: "First major conflict",
+        notes: "Key confrontation between lead and antagonist."
+      },
+      {
+        day: 3,
+        focus: "Emotional fallout",
+        notes: "Quieter, performance-driven scenes."
+      }
+    ];
+
+    return {
+      summary,
+      logline: shortDesc || "A high-stakes story powered by human performances and an AI crew behind the scenes.",
+      roles,
+      scheduleOutline
+    };
+  }
+
+  // --- Rendering ---
+
+  function renderProjects() {
+    const container = document.getElementById("projects-container");
+    const projects = loadProjects();
+
+    if (!projects.length) {
+      container.innerHTML = `
+        <div class="projects-empty">
+          No projects yet. Use the form on the left to create your first film or series concept.
+          Then click <strong>“Generate Breakdown (Mock)”</strong> to see a sample AI package.
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = "";
+    projects.forEach(project => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "project-item";
+
+      const statusClass =
+        project.status === "generated" ? "status-pill status-generated" : "status-pill status-draft";
+      const statusLabel =
+        project.status === "generated" ? "Generated (Mock)" : "Draft";
+
+      const breakdown = project.breakdown;
+
+      wrapper.innerHTML = `
+        <div class="project-header">
+          <div class="project-title">${project.title || "Untitled project"}</div>
+          <div class="${statusClass}">${statusLabel}</div>
+        </div>
+        <div class="project-meta">
+          ${project.genre} · ${project.format} · Updated ${formatDate(project.updatedAt)}
+        </div>
+        <div class="project-meta" style="opacity:0.7; margin-top:2px;">
+          ${project.description
+            ? (project.description.length > 120
+              ? project.description.slice(0, 120) + "..."
+              : project.description)
+            : "No description yet."}
+        </div>
+        <div class="project-actions">
+          <button class="btn-small primary" data-action="generate" data-id="${project.id}">
+            ${project.breakdown ? "Regenerate breakdown (Mock)" : "Generate breakdown (Mock)"}
+          </button>
+        </div>
+        ${
+          breakdown
+            ? `
+          <div class="breakdown">
+            <div class="breakdown-section">
+              <h4>Summary</h4>
+              <p>${breakdown.summary}</p>
+            </div>
+            <div class="breakdown-section">
+              <h4>Logline</h4>
+              <p>${breakdown.logline}</p>
+            </div>
+            <div class="breakdown-section">
+              <h4>Key roles</h4>
+              <ul class="roles-list">
+                ${breakdown.roles
+                  .map(
+                    r => `
+                  <li>
+                    <strong>${r.name}</strong>
+                    <span class="pill-tag">${r.tag}</span>
+                    <span class="pill-tag">${r.ageRange}</span>
+                    <div>${r.description}</div>
+                  </li>
+                `
+                  )
+                  .join("")}
+              </ul>
+            </div>
+            <div class="breakdown-section">
+              <h4>Schedule outline (sample)</h4>
+              <ul class="roles-list">
+                ${breakdown.scheduleOutline
+                  .map(
+                    d => `
+                  <li>
+                    <strong>Day ${d.day}:</strong> ${d.focus}
+                    <div>${d.notes}</div>
+                  </li>
+                `
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          </div>
+        `
+            : ""
+        }
+      `;
+
+      container.appendChild(wrapper);
+    });
+
+    // attach button listeners
+    container.querySelectorAll("button[data-action='generate']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-id");
+        const proj = loadProjects().find(p => p.id === id);
+        if (!proj) return;
+
+        // In a real app, you’d call the backend AI here.
+        const breakdown = generateMockBreakdown(proj);
+        updateProject(id, { status: "generated", breakdown });
+        renderProjects();
+      });
+    });
+  }
+
+  // --- Form handling ---
+
+  document.getElementById("project-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+      title: form.title.value,
+      description: form.description.value,
+      genre: form.genre.value,
+      format: form.format.value
+    };
+    createProject(data);
+    form.reset();
+    renderProjects();
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderProjects();
+</script>
 </body>
 </html>
