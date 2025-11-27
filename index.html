@@ -1,1 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LightsCameraAction (LCA) – AI-Powered Filmmaking Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050510;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+    header {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(5,5,16,0.9);
+      z-index: 10;
+    }
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    .logo span {
+      display: inline-block;
+      padding: 4px 8px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      margin-right: 8px;
+      font-size: 0.75rem;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+    nav a:hover { opacity: 1; }
 
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: #f5c249;
+      color: #111;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      margin-left: 12px;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #f5f5f5;
+      border-color: rgba(245,194,73,0.6);
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 60px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom: 16px;
+    }
+    .hero h1 span {
+      display: block;
+      font-weight: 400;
+      font-size: 0.8em;
+      opacity: 0.85;
+    }
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+    .hero-cta { margin-top: 12px; }
+    .hero-tagline {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      margin-top: 10px;
+    }
+    .hero-card {
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: radial-gradient(circle at top left, #2c2c52, #050510);
+      padding: 20px 18px;
+      font-size: 0.85rem;
+    }
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .hero-card ul { list-style: none; }
+    .hero-card li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .hero-card li span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,194,73,0.7);
+      font-size: 0.7rem;
+      text-align: center;
+      line-height: 16px;
+      margin-right: 8px;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+    .section h2 {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px;
+      font-size: 0.9rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,194,73,0.6);
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 24px 28px;
+      font-size: 0.8rem;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: flex-start; }
+      nav { margin-top: 8px; }
+      .hero {
+        grid-template-columns: 1fr;
+        margin-top: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>LCA</span> LightsCameraAction
+    </div>
+    <nav>
+      <a href="#how-it-works">How it works</a>
+      <a href="#ai-tools">AI tools</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn-outline" href="#join">Sign in</a>
+      <a class="btn" href="#join">Join beta</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>
+          AI crew. Real human actors.
+          <span>The filmmaking network where everything behind the camera is automated—so people can focus on performance.</span>
+        </h1>
+        <p>
+          LightsCameraAction (LCA) is an AI-powered production hub: generate projects, organize shoots, match cast and crew, and get paid—without replacing a single human actor.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#join">Get early access</a>
+          <a class="btn-outline" href="#how-it-works">View platform</a>
+        </div>
+        <div class="hero-tagline">
+          Built for actors, directors, and producers who want less chaos and more finished projects.
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>LCA does the paperwork. You do the art.</h2>
+        <ul>
+          <li><span>1</span>AI turns a one-line idea into a full project: logline, breakdown, schedule, and roles.</li>
+          <li><span>2</span>Producers use AI to handle call sheets, scheduling, and logistics—actors stay 100% human.</li>
+          <li><span>3</span>Creators monetize skills through coaching, services, and bookings on the LCA marketplace.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="how-it-works" class="section">
+      <h2>How LightsCameraAction works</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="pill">Step 1 · Create</div>
+          <h3>Turn ideas into structured projects</h3>
+          <p>Type your concept and let LCA generate loglines, breakdowns, characters, and a production-ready plan in minutes.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Step 2 · Cast & crew</div>
+          <h3>Match humans to roles and jobs</h3>
+          <p>AI suggests actors and crew based on look, skills, and style—but humans always make the final casting decisions.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Step 3 · Shoot & deliver</div>
+          <h3>AI production office in your browser</h3>
+          <p>Auto-built schedules, call sheets, and continuity notes keep sets calm, respectful, and on time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-tools" class="section">
+      <h2>AI tools that stay behind the camera</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Project Engine</h3>
+          <p>Generate production-ready outlines, breakdowns, and budgets from a simple description.</p>
+        </div>
+        <div class="card">
+          <h3>Casting Assistant</h3>
+          <p>Sort and suggest talent based on match score; directors and producers always pick the cast.</p>
+        </div>
+        <div class="card">
+          <h3>Production Office</h3>
+          <p>AI drafts schedules, call sheets, and logistics so your team can focus on storytelling.</p>
+        </div>
+        <div class="card">
+          <h3>Editing Assistant</h3>
+          <p>Get structure and pacing notes on rough cuts without losing your editor’s creative control.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <h2>Pricing for working creatives</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="pill">Free</div>
+          <h3>Starter Account</h3>
+          <p>Create a profile, browse projects, and join the LCA community.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Pro</div>
+          <h3>Actor & Creator</h3>
+          <p>Unlock AI tools, priority casting, and marketplace earnings (monthly subscription).</p>
+        </div>
+        <div class="card">
+          <div class="pill">Studio</div>
+          <h3>Producer & Teams</h3>
+          <p>Run multiple projects, manage teams, and automate your entire production office.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="section">
+      <h2>Join the LightsCameraAction beta</h2>
+      <p>Drop your email below to be first in line for the private beta of LCA.</p>
+      <form>
+        <input type="email" placeholder="you@example.com" required
+               style="padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.2); background:transparent; color:#f5f5f5; width:260px; max-width:100%; margin-right:8px; font-size:0.9rem;" />
+        <button class="btn" type="submit">Request invite</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> LightsCameraAction · Built for real actors and real stories.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
